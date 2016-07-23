@@ -22,7 +22,7 @@ function initialize() {
         ['Chisholm Valley', 30.4956254, -97.6832998, 2, 'ChIJNYApgOXRRIYR-lTclDmzG00'],
         ['Downtown', 30.511015, -97.673859, 3, ''],
         ['Egger Acres', 30.5247191, -97.67515899999999, 4, 'ChIJRfGyZaLRRIYRCsbxjO0AGOE'],
-        ['Greater RR West', 30.5005473, -97.69686999999999, 5, 'ChIJteL-EffRRIYRelLwSyaFg8w'],
+        ['Greater Round Rock West', 30.5005473, -97.69686999999999, 5, 'ChIJteL-EffRRIYRelLwSyaFg8w'],
         ['Green Slopes at Lake Creek', 30.5024678, -97.664306, 6, 'ChIJNS5HwMXRRIYRrmS_vd33qVQ'],
         ['Green Hill', 30.5278551, -97.6826214, 7, 'ChIJvzjPI5zRRIYRvi3rGydtXpE'],
         ['Kensington Place', 30.4915368, -97.66769739999999, 8, 'ChIJw664gtnRRIYR2AMM0HzulpA' ],
@@ -33,7 +33,9 @@ function initialize() {
         ['The Settlement', 30.542140, -97.666608, 13, ''],
         ['Shadow Pointe', 30.5001263, -97.64328309999999, 14, 'ChIJO-u6lzrQRIYR2mpLDNy6qOc'],
         ['South Creek', 30.506127, -97.6507421, 15, 'ChIJQyklazTQRIYRQK8L9QHL_gw'],
-        ['Sunrise Park/Vista/Willow Bend Estates', 30.5328667, -97.6704106, 16, 'ChIJi_xSCQrRRIYRGrrKqDvg5sI']
+        ['Sunrise Park/Vista/Willow Bend Estates', 30.5328667, -97.6704106, 16, 'ChIJi_xSCQrRRIYRGrrKqDvg5sI'],
+        ['Sam Bass Trails', 30.5242491, -97.70128090000001, 17, 'ChIJ8fPr1yvSRIYR3hozOImdZrg'],
+        ['Somerset', 30.5225213, -97.70026299999999, 18, 'ChIJmyb4oinSRIYR2B83L79Aje4']
     ];
                         
     // Info Window Content
@@ -53,7 +55,9 @@ function initialize() {
         ['13'],
         ['14'],
         ['15'],
-        ['16']
+        ['16'],
+        ['17'],
+        ['18']
     ];
         
     // Display multiple markers on a map
@@ -79,10 +83,14 @@ function initialize() {
 
         // Automatically center the map fitting all markers on the screen
         map.fitBounds(bounds);
+        
     }
-
+    // Add an offset because the pins have a height
+    map.panBy(0,-10);
+    
     // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        // larger numbers zoom in more
         this.setZoom(13);
         google.maps.event.removeListener(boundsListener);
     });
